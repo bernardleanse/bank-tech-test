@@ -1,5 +1,10 @@
 class Bank
-  def print_statment
+  def print_statement
     'date || credit || debit || balance'
   end
+
+  def deposit
+  end
+
+
 end
