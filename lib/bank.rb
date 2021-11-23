@@ -5,8 +5,8 @@ class Bank
   end
 
   def deposit(amount)
-    @deposits << amount
     @balance += amount
+    @deposits << { credit: amount, balance: @balance } 
   end
 
   def withdraw(amount)
@@ -18,13 +18,19 @@ class Bank
   end
 
   def print_statement
-    Time.now.strftime("%d/%m/%Y") + convert_deposits_to_2_decimal_places.join(" ") + "10.00" + "30.00"
+    "date || credit || debit || balance" +
+    "\n" +
+    Time.now.strftime("%d/%m/%Y") + 
+    " || " +
+    two_decimal_places(@deposits.first[:credit]) +
+    " || || " +
+    two_decimal_places(@deposits.first[:balance])
   end
 
   private
 
-  def convert_deposits_to_2_decimal_places
-    @deposits.map { |deposit| "%0.2f" % [deposit] }
+  def two_decimal_places(number)
+    "%0.2f" % [number] 
   end
 
 end

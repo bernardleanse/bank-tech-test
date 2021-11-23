@@ -45,6 +45,12 @@ describe Bank do
       bank.deposit 20
       expect(bank.print_statement).to include("10.00").twice.and include("30.00").and include("20.00")
     end
+
+    it "shows the desired format" do
+      bank.deposit 10
+      expect(bank.print_statement).to eq "date || credit || debit || balance
+#{date} || 10.00 || || 10.00"
+    end
   end
 
 end
