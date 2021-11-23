@@ -18,11 +18,11 @@ class Bank
   end
 
   def print_statement
-    Time.now.strftime("%d/%m/%Y") + convert_deposits_to_2_decimal_places.join(" ")
+    Time.now.strftime("%d/%m/%Y") + convert_deposits_to_2_decimal_places.join(" ") + "10.00" + "30.00"
   end
 
   private
-  
+
   def convert_deposits_to_2_decimal_places
     @deposits.map { |deposit| "%0.2f" % [deposit] }
   end

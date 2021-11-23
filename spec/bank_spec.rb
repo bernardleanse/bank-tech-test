@@ -40,7 +40,11 @@ describe Bank do
       expect(bank.print_statement).to include("10.00").and include "15.00"
     end
 
-    
+    it "shows accumulating balance" do
+      bank.deposit 10
+      bank.deposit 20
+      expect(bank.print_statement).to include("10.00").twice.and include("30.00").and include("20.00")
+    end
   end
 
 end
