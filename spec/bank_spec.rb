@@ -7,7 +7,8 @@ describe Bank do
   describe "#deposit" do
 
     it 'deposits a user specific amount of money' do
-      expect{ bank.deposit 10 }.to change { bank.get_balance }.by(10)  
+      expect { bank.deposit 10 }.to change { bank.get_balance }.by(10)  
+      expect { bank.deposit 20 }.to change { bank.get_balance }.by(20)
     end
 
   end
@@ -16,6 +17,7 @@ describe Bank do
 
     it 'withrdraws a user specific amount of money' do
       expect { bank.withdraw 10 }.to change { bank.get_balance }.by(-10)
+      expect { bank.withdraw 20 }.to change { bank.get_balance }.by(-20)
     end
 
   end
@@ -38,6 +40,7 @@ describe Bank do
       expect(bank.print_statement).to include("10.00").and include "15.00"
     end
 
+    
   end
 
 end
