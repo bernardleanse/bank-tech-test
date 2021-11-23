@@ -46,10 +46,18 @@ describe Bank do
       expect(bank.print_statement).to include("10.00").twice.and include("30.00").and include("20.00")
     end
 
-    it "shows the desired format" do
+    it "shows one deposit in the desired format" do
       bank.deposit 10
       expect(bank.print_statement).to eq "date || credit || debit || balance
-#{date} || 10.00 || || 10.00"
+#{date} || 10.00 ||  || 10.00"
+    end
+
+    it "shows a withdrawal in the desired format" do
+      bank.deposit 10
+      bank.withdraw 5
+      expect(bank.print_statement).to eq "date || credit || debit || balance
+#{date} || 10.00 ||  || 10.00
+#{date} ||  || 5.00 || 5.00"
     end
   end
 
