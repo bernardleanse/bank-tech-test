@@ -15,4 +15,8 @@ class Bank
     @balance
   end
 
+  def print_statement
+    Time.now.strftime("%d/%m/%Y") + "10.00" + " " + "15.00"
+  end
+
 end

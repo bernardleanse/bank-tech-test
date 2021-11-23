@@ -20,4 +20,24 @@ describe Bank do
 
   end
 
+  describe "#print_statement" do
+    let(:date) { Time.now.strftime("%d/%m/%Y") }
+    it "shows the date of a transaction" do
+      bank.deposit 10
+      expect(bank.print_statement).to include date
+    end
+
+    it "shows the amount credited" do
+      bank.deposit 10
+      expect(bank.print_statement).to include "10.00"
+    end
+
+    it "shows two different deposits" do
+      bank.deposit 10
+      bank.deposit 15
+      expect(bank.print_statement).to include("10.00").and include "15.00"
+    end
+
+  end
+
 end
