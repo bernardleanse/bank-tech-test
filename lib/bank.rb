@@ -6,12 +6,12 @@ class Bank
 
   def deposit(amount)
     @balance += amount
-    @transactions << { date: Time.now.strftime("%d/%m/%Y"), credit: amount, balance: @balance } 
+    @transactions << { date: todays_date, credit: amount, balance: @balance } 
   end
 
   def withdraw(amount)
     @balance -= amount
-    @transactions << { date: Time.now.strftime("%d/%m/%Y"), debit: amount, balance: @balance}
+    @transactions << { date: todays_date, debit: amount, balance: @balance}
   end 
 
   def get_balance
@@ -21,14 +21,12 @@ class Bank
   def print_statement
     statement = ["date || credit || debit || balance"] 
     @transactions.each do |transaction| 
-      statement << "#{transaction[:date]} || #{two_decimal_places(transaction[:credit])}" + 
-      " || #{two_decimal_places(transaction[:debit])} || #{two_decimal_places(transaction[:balance])}"
+      statement << format_transcation_attributes(transaction) 
     end
     
     statement.join("\n")
   end
    
-
   private
 
   def two_decimal_places(number)
@@ -36,7 +34,13 @@ class Bank
     "%0.2f" % [number] 
   end
 
-  def time_now
+  def todays_date
+    Time.now.strftime("%d/%m/%Y")
+  end
+
+  def format_transcation_attributes(transaction)
+    "#{transaction[:date]} || #{two_decimal_places(transaction[:credit])}" + 
+    " || #{two_decimal_places(transaction[:debit])} || #{two_decimal_places(transaction[:balance])}"
   end
 
 end
